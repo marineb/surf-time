@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import moment from 'moment';
 
 import TideItem from './tide-item';
+import GeocodeLocation from './geocode-location';
 import './tides-list.css';
 
 const KEY = '74e28dc2-db50-449d-bdaf-58ccaa98cf30';
@@ -35,6 +36,9 @@ class TidesList extends Component {
     return (
       <div className="TidesList">
         <h1>Tides for <Moment format="D MMMM YYYY" /></h1>
+        {this.state.lat && this.state.long &&
+          <GeocodeLocation lat={this.state.lat} long={this.state.long} />
+        }
         {heights.length > 0 &&
           this.state.heights.map((d, i) => <TideItem key={i} date={d.date} height={d.height} />)}
       </div>
