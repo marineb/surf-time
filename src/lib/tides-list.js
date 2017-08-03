@@ -9,6 +9,17 @@ const PARIS_LAT = '48.8566';
 const PARIS_LONG = '2.3522';
 const ONE_DAY = moment.duration(1, 'day') / 1000;
 
+function sortByDate(a, b) {
+  let m = moment(a.date);
+  if (m.isBefore(b.date)) {
+    return -1;
+  } else if (m.isAfter(b.date)) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 class TidesList extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +27,7 @@ class TidesList extends Component {
     const START = moment().unix();
     fetch(`https://www.worldtides.info/api?heights&lat=${PARIS_LAT}&lon=${PARIS_LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}`)
       .then(r => r.json())
-      .then(data => this.setState({heights: data.heights}));
+      .then(data => this.setState({heights: data.heights.sort(sortByDate), lat: data.responseLat, long: data.responseLon}));
   }
   render() {
     let heights = this.state.heights || [];
