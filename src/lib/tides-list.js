@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import moment from 'moment';
 
 import TideItem from './tide-item';
@@ -33,6 +34,7 @@ class TidesList extends Component {
     let heights = this.state.heights || [];
     return (
       <div className="TidesList">
+        <h1>Tides for <Moment format="D MMMM YYYY" /></h1>
         {heights.length > 0 &&
           this.state.heights.map((d, i) => <TideItem key={i} date={d.date} height={d.height} />)}
       </div>
