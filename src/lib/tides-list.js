@@ -47,7 +47,7 @@ class TidesList extends Component {
           <GeocodeLocation lat={this.state.lat} long={this.state.long} />
         }
         {heights.length > 0 &&
-          this.state.heights.map((d, i) => <TideItem key={i} date={d.date} height={d.height} />)}
+          this.state.heights.map((d, i) => <TideItem key={i} time={d.date} height={(d.height * 3.37).toFixed()} />)}
       </div>
     )
   }
