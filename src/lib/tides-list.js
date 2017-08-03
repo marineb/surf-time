@@ -9,7 +9,14 @@ import './tides-list.css';
 const KEY = '74e28dc2-db50-449d-bdaf-58ccaa98cf30';
 const PARIS_LAT = '48.8566';
 const PARIS_LONG = '2.3522';
+const LE_T_LAT = '46.45108841932595';
+const LE_T_LONG = '2.2098490391466323';
 const ONE_DAY = moment.duration(1, 'day') / 1000;
+
+const LAT = LE_T_LAT;
+const LONG = LE_T_LONG;
+// const LAT = PARIS_LAT;
+// const LONG = PARIS_LONG;
 
 function sortByDate(a, b) {
   let m = moment(a.date);
