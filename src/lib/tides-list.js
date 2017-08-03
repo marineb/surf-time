@@ -34,7 +34,7 @@ class TidesList extends Component {
     super(props);
     this.state = {};
     const START = moment().unix();
-    fetch(`https://www.worldtides.info/api?heights&lat=${PARIS_LAT}&lon=${PARIS_LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}`)
+    fetch(`https://www.worldtides.info/api?extremes&heights&lat=${LAT}&lon=${LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}&datum=LAT`)
       .then(r => r.json())
       .then(data => this.setState({heights: data.heights.sort(sortByDate), lat: data.responseLat, long: data.responseLon}));
   }
