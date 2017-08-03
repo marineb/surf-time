@@ -6,7 +6,7 @@ export default class extends Component {
   render() {
     return (
       <div className="TideItem">
-        <Moment date={this.props.time} format="DD/MM/YYYY"/> | {this.props.height}
+        <Moment date={this.props.time} format="HH:mm"/> | <em>{this.props.height} ft</em>
       </div>
     )
   }
