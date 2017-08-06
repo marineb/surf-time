@@ -1,0 +1,13 @@
+.TideItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 200px;
+  margin: 0 auto 22px;
+}
+
+.TideItem svg,
+.TideItem time,
+.TideItem em {
+  flex: 1;
+}
