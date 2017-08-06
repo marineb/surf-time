@@ -36,18 +36,26 @@ class TidesList extends Component {
     const START = moment().unix();
     fetch(`https://www.worldtides.info/api?extremes&heights&lat=${LAT}&lon=${LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}&datum=LAT`)
       .then(r => r.json())
-      .then(data => this.setState({heights: data.heights.sort(sortByDate), lat: data.responseLat, long: data.responseLon}));
+      .then(data => {
+        this.setState({
+          heights: data.heights.concat(data.extremes).sort(sortByDate),
+          lat: data.responseLat,
+          long: data.responseLon
+        })
+      });
   }
   render() {
     let heights = this.state.heights || [];
     return (
       <div className="TidesList">
-        <h1>Tides for <Moment format="D MMMM YYYY" /></h1>
+        <h2 className="TidesList__date">Tides for <Moment format="D MMMM YYYY" /></h2>
         {this.state.lat && this.state.long &&
           <GeocodeLocation lat={this.state.lat} long={this.state.long} />
         }
         {heights.length > 0 &&
-          this.state.heights.map((d, i) => <TideItem key={i} time={d.date} height={(d.height * 3.37).toFixed()} />)}
+          this.state.heights.map((d, i) => {
+           return <TideItem key={i} time={d.date} height={d.height} unit='m' tide={d.type} /> 
+          })}
       </div>
     )
   }
