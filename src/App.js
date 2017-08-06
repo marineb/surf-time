@@ -5,7 +5,12 @@ import './App.css';
 
 class App extends Component {
   render() {
-    return (<TidesList />);
+    return (
+      <div className="l-center">
+        <h1 className="main-heading">When should Marine surf?</h1>
+        <TidesList />
+      </div>
+    );
   }
 }
 
