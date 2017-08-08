@@ -6,43 +6,16 @@ import TideItem from './tide-item';
 import GeocodeLocation from './geocode-location';
 import './tides-list.css';
 
-const KEY = '74e28dc2-db50-449d-bdaf-58ccaa98cf30';
-const PARIS_LAT = '48.8566';
-const PARIS_LONG = '2.3522';
-const LE_T_LAT = '46.45108841932595';
-const LE_T_LONG = '2.2098490391466323';
-const ONE_DAY = moment.duration(1, 'day') / 1000;
-
-const LAT = LE_T_LAT;
-const LONG = LE_T_LONG;
-// const LAT = PARIS_LAT;
-// const LONG = PARIS_LONG;
-
-function sortByDate(a, b) {
-  let m = moment(a.date);
-  if (m.isBefore(b.date)) {
-    return -1;
-  } else if (m.isAfter(b.date)) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
+import { getTides, getSun } from './util'
 
 class TidesList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    const START = moment().unix();
-    fetch(`https://www.worldtides.info/api?extremes&heights&lat=${LAT}&lon=${LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}&datum=LAT`)
-      .then(r => r.json())
-      .then(data => {
-        this.setState({
-          heights: data.heights.concat(data.extremes).sort(sortByDate),
-          lat: data.responseLat,
-          long: data.responseLon
-        })
-      });
+    getTides()
+      .then(({heights, lat, long}) => this.setState({ heights, lat, long}));
+    getSun()
+      .then(d => this.setState({sunrise: d.sunrise, sunset: d.sunset}))
   }
   render() {
     let heights = this.state.heights || [];
