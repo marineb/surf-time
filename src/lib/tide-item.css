@@ -6,6 +6,7 @@
   margin: 0 auto 22px;
 }
 
+.TideItem span,
 .TideItem svg,
 .TideItem time,
 .TideItem em {

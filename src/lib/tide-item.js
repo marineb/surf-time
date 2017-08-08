@@ -17,7 +17,7 @@ export default class extends Component {
         icon = <LowTideIcon />;
         break;
       default:
-        icon = '';
+        icon = <span />;
         break;
     }
     let unit = this.props.unit || 'm';
