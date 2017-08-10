@@ -6,8 +6,11 @@ export default class extends Component {
   render() {
     return (
       <div className="NightMode">
-        Sunrise is at <Moment date={this.props.sunrise} format="HH:mm" />.
-        You really shouldn't be surfing at night, Marine.
+        You really shouldn't be surfing at night, Marine. <br />
+        <br />
+        Sunset was at <Moment date={this.props.sunset} format="HH:mm" />. <br />
+        <br />
+        Sunrise will be at <Moment date={this.props.sunrise} format="HH:mm" />.
       </div>
     )
   }
