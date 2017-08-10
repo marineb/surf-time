@@ -25,7 +25,7 @@ export default class extends Component {
     return (
       <div className="CitySelect">
         <h2 className="CitySelect__date">
-          Tides for <Moment format="D MMMM YYYY" />
+          Tides for <Moment format="D MMMM YYYY, HH:mm" />
         </h2>
         <Select.Async
           className="CitySelect__dropdown"
