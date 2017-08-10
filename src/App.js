@@ -77,7 +77,7 @@ class App extends Component {
           <SurfGif />
           
           <h1 className="main-heading">
-            When should Marine surf?
+            When should<br />Marine surf?
           </h1>
           
           <DayAndPlace
