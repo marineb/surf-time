@@ -15,7 +15,7 @@ export default class extends Component {
       .then(d => {
         if (!this._isCancelled) {
           this.setState({
-            address: `${d.results[0].components.city || d.results[0].components.village}, ${d.results[0].components.country}`
+            address: `${d.results[0].formatted}`
           })
         }
       });
