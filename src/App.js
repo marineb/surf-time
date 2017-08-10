@@ -80,10 +80,6 @@ class App extends Component {
             When should<br />Marine surf?
           </h1>
           
-          <DayAndPlace
-            onChange={this.onLocationChange.bind(this)}
-            value={this.state.value} />
-          
           {notNearAShore && lat && lng && !this.state.nightMode &&
             <GeocodeLocation lat={this.state.tideLat} lng={this.state.tideLng} location={this.state.value.label} />
           }
@@ -93,6 +89,11 @@ class App extends Component {
             :
             lat && lng && <TidesList items={this.state.heights} />
           }
+          
+          <DayAndPlace
+            onChange={this.onLocationChange.bind(this)}
+            value={this.state.value} />
+          
           
           <Footer />
           
