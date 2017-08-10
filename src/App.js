@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+
 import TidesList from './lib/tides-list';
 import DayAndPlace from './lib/day-and-place';
 import GeocodeLocation from './lib/geocode-location';
 import NightMode from './lib/night-mode';
 import SurfGif from './lib/surf-gif';
 import Footer from './lib/footer';
+
 import { getTides, getSun, combineSunAndTides } from './lib/util';
+
 import BodyClassName from 'react-body-classname';
 import moment from 'moment';
+
 import './App.css';
 
 class App extends Component {
