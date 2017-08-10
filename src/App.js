@@ -19,10 +19,10 @@ class App extends Component {
     super(props);
     this.state = {
       value: {
-        label: "Paris, France"
+        label: "New York City, NY"
       },
-      lat: 48.8566101,
-      lng: 2.3514992,
+      lat: 40.7117,
+      lng: -73.9683,
     };
     
     this.updateTides(this.state.lat, this.state.lng);
