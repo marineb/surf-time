@@ -50,3 +50,7 @@
   color: white;
   box-shadow: none;
 }
+
+.Select-control {
+  height: 40px;
+}
