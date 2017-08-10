@@ -10,6 +10,13 @@
   text-align: center;
 }
 
+.CitySelect__small {
+  text-align: center;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 25px;
+}
+
 .CitySelect__dropdown {
   text-align: center;
 }

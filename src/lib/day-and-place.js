@@ -27,6 +27,7 @@ export default class extends Component {
         <h2 className="CitySelect__date">
           Tides for <Moment format="D MMMM YYYY, HH:mm" />
         </h2>
+        <small className="CitySelect__small">All times in local timezone</small>
         <Select.Async
           className="CitySelect__dropdown"
           name="city-lookup"
