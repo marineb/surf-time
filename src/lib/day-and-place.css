@@ -1,0 +1,52 @@
+.CitySelect {
+  margin-bottom: 45px;
+  padding: 0 15px;
+}
+
+.CitySelect__date {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.CitySelect__dropdown {
+  text-align: center;
+}
+
+.CitySelect__dropdown .Select-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.CitySelect__dropdown .Select-placeholder {
+  color: white;
+}
+
+.CitySelect__dropdown .Select-arrow {
+  border-top-color: white;
+}
+
+.is-open > .Select-control .Select-arrow {
+  border-bottom-color: white;
+}
+
+.CitySelect__dropdown .Select-input > input {
+  color: white;
+}
+
+.has-value.Select--single > .Select-control .Select-value .Select-value-label {
+  color: white !important;
+}
+
+.CitySelect__dropdown .Select-clear {
+  color: white;
+}
+
+.is-focused:not(.is-open) > .Select-control {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  box-shadow: none;
+}

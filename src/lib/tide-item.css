@@ -2,12 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 200px;
-  margin: 0 auto 22px;
+  max-width: 250px;
+  margin: 0 auto 15px;
+  min-height: 50px;
 }
 
 .TideItem span,
-.TideItem svg,
+.TideItem .TideIcon,
 .TideItem time,
 .TideItem em {
   flex: 1;

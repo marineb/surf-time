@@ -7,11 +7,25 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.lat}%2C${this.props.long}&key=${GEOCODE_KEY}`)
-      .then(r => r.json())
-      .then(d => this.setState({address: `${d.results[0].components.city || d.results[0].components.village}, ${d.results[0].components.country}`}));
+    if (this.props.lat && this.props.lng) {
+      fetch(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.lat}%2C${this.props.lng}&key=${GEOCODE_KEY}`)
+        .then(r => r.json())
+        .then(d => {
+          this.setState({
+            address: `${d.results[0].components.city || d.results[0].components.village}, ${d.results[0].components.country}`
+          })
+        });
+    }
   }
   render() {
-    return <h3 className="GeocodeLocation">in {this.state.address}</h3>
+    if (this.state.address) {
+      return (
+        <h3 className="GeocodeLocation">
+          {this.props.location} doesn't seem to be near a shore. Here are the tides for {this.state.address} instead.
+        </h3>
+      )
+    } else {
+      return null;
+    }
   }
 }

@@ -1,3 +1,7 @@
+html {
+  min-height: 100%;
+}
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -12,13 +16,25 @@ body {
   font-weight: 100;
 }
 
+body.night-mode {
+  background: linear-gradient(30deg, #00103C, #0056E6);
+}
+
+img {
+  max-width: 100%;
+}
+
 .l-center {
   max-width: 420px;
   margin: 0 auto;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .main-heading {
   text-align: center;
   font-weight: 400;
+  margin-top: 0;
   margin-bottom: 24px;
 }

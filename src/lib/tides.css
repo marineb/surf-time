@@ -1,0 +1,9 @@
+.HighTide,
+.LowTide {
+  text-align: center;
+}
+
+.HighTide > img,
+.LowTide > img {
+  max-width: 60px;
+}

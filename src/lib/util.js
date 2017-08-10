@@ -1,17 +1,8 @@
 import moment from 'moment';
 
+const STEP = moment.duration(90, 'minutes') / 1000;
 const ONE_DAY = moment.duration(1, 'day') / 1000;
 const KEY = '74e28dc2-db50-449d-bdaf-58ccaa98cf30';
-
-const PARIS_LAT = '48.8566';
-const PARIS_LONG = '2.3522';
-const LE_T_LAT = '46.45108841932595';
-const LE_T_LONG = '2.2098490391466323';
-
-const LAT = LE_T_LAT;
-const LONG = LE_T_LONG;
-// const LAT = PARIS_LAT;
-// const LONG = PARIS_LONG;
 
 function sortByDate(a, b) {
   let m = moment(a.date);
@@ -24,44 +15,40 @@ function sortByDate(a, b) {
   }
 }
 
-export function getTides() {
+export function getTides(lat, lng) {
   const START = moment().unix();
   
-  return fetch(`https://www.worldtides.info/api?extremes&heights&lat=${LAT}&lon=${LONG}&start=${START}&length=${ONE_DAY}&key=${KEY}&datum=LAT`)
+  return fetch(`https://www.worldtides.info/api?extremes&heights&step=${STEP}&lat=${lat}&lon=${lng}&start=${START}&length=${ONE_DAY}&key=${KEY}&datum=LAT`)
     .then(r => r.json())
     .then(data => {
       return {
         heights: data.heights.concat(data.extremes).sort(sortByDate),
         lat: data.responseLat,
-        long: data.responseLon
+        lng: data.responseLon
       } 
     });
 }
 
-export function getSun() {
-  return fetch(`https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LONG}&formatted=0`)
+export function getSun(lat, lng) {
+  return fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`)
     .then(r => r.json())
-    .then(({sunrise, sunset}) => ({sunrise, sunset}));
+    .then(({ results: { sunrise, sunset }}) => ({sunrise, sunset}));
 }
 
-export function getData() {
-  Promise.all([getTides(), getSun()])
-    .then((tides, sun) => {
-      let suntimes = [
-        {date: sun.sunrise, type: 'sunrise'},
-        {date: sun.sunset, type: 'sunset'}
-      ];
-      let heights = tides.heights
-        .concat(tides.extremes, suntimes)
-        .sort(sortByDate)
-        .filter(t => {
-          let time = moment(t.date);
-          if (time.isBefore(sun.sunrise) || time.isAfter(t.date)) {
-            return false;
-          }
-          return time;
-        });
-      console.log(heights);
-      return { heights };
+export function combineSunAndTides([{ heights, lat, lng }, { sunrise, sunset }]) {
+  let suntimes = [
+    {date: sunrise, type: 'sunrise'},
+    {date: sunset, type: 'sunset'}
+  ];
+  heights = heights
+    .concat(suntimes)
+    .sort(sortByDate)
+    .filter(t => {
+      let time = moment(t.date);
+      if (time.isBefore(sunrise) || time.isAfter(sunset)) {
+        return false;
+      }
+      return time;
     });
+  return { heights, tideLat: lat, tideLng: lng };
 }
