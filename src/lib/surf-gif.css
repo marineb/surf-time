@@ -1,8 +1,9 @@
 .SurfGif {
   text-align: center;
   margin-bottom: 25px;
+  padding-top: 15px;
 }
 
 .SurfGif > img {
-  max-width: 200px;
+  max-width: 75px;
 }

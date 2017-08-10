@@ -1,0 +1,7 @@
+.SunIcon {
+  margin-bottom: 15px;
+}
+
+.SunIcon:last-of-type {
+  margin-bottom: 0;
+}
