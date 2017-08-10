@@ -2,7 +2,7 @@
   "name": "surf-time",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://whenshouldmarine.surf",
+  "homepage": "https://whenshouldmarine.surf",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "moment": "^2.18.1",
