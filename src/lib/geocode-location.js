@@ -7,7 +7,6 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this._isCancelled = false;
   }
   componentWillReceiveProps({ lat, lng }) {
     fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C${lng}&key=${GEOCODE_KEY}`)
@@ -17,6 +16,8 @@ export default class extends Component {
           this.setState({
             address: `${d.results[0].formatted}`
           })
+        } else {
+          this._isCancelled = false;
         }
       });
   }
