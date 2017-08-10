@@ -29,7 +29,7 @@ export default class extends Component {
     }
     return (
       <div className="TideItem">
-        <Moment date={this.props.time} format="HH:mm"/> {icon} <em>{height.toFixed()} {unit}</em>
+        <Moment date={this.props.time} format="HH:mm"/> {icon} <em>{height.toFixed(2)} {unit}</em>
       </div>
     )
   }
