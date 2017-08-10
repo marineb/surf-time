@@ -7,15 +7,21 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    if (this.props.lat && this.props.lng) {
-      fetch(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.lat}%2C${this.props.lng}&key=${GEOCODE_KEY}`)
-        .then(r => r.json())
-        .then(d => {
+    this._isCancelled = false;
+  }
+  componentWillReceiveProps({ lat, lng }) {
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C${lng}&key=${GEOCODE_KEY}`)
+      .then(r => r.json())
+      .then(d => {
+        if (!this._isCancelled) {
           this.setState({
             address: `${d.results[0].components.city || d.results[0].components.village}, ${d.results[0].components.country}`
           })
-        });
-    }
+        }
+      });
+  }
+  componentWillUnmount() {
+    this._isCancelled = true;
   }
   render() {
     if (this.state.address) {
